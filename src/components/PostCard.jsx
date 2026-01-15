@@ -10,29 +10,30 @@ import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
-export default function PostCard() {
+export default function PostCard({authorName, image, content}) {
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-            R
+            {authorName?.charAt(0) || "?"}
           </Avatar>
         }
         title="Shrimp and Chorizo Paella"
         subheader="September 14, 2016"
       />
-      <CardMedia
-        component="img"
-        height="194"
-        image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9pfJM6VKaBv1iIzVD07dDMbLUYyKgChJSe9yaMmivKV6kKr7VH0zKmz5DCtIv-V_3XUrEicErKxTZT7Od4yHZBpafz6TbKnk7WeQXtVl0&s=10"
-        alt="Paella dish"
-      />
+      {(image.length > 0) ? 
+        <CardMedia
+          component="img"
+          height="194"
+          image={image}
+          alt="Paella dish"
+        /> : null
+      }
+
       <CardContent>
         <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the mussels,
-          if you like.
+          {content}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>

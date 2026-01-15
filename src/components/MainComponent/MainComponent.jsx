@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
-import PostCard from '../PostCard';
+import PostCardList from '../PostCardList/PostCardList';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -16,11 +16,11 @@ const Item = styled(Paper)(({ theme }) => ({
   }),
 }));
 
-export default function RowAndColumnSpacing() {
+export default function MainComponent() {
   return (
     <Box display="flex" justifyContent="center" sx={{ width: '100%', mt: '3rem'} }>
       <Grid container alignItems={'start'} justifyContent={'center'} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid xs={0} md={3}>
+        <Grid size={{ xs: 0, md: 3 }}>
             {/* Users */}
           <Item> 1 </Item>
         </Grid>
@@ -28,12 +28,9 @@ export default function RowAndColumnSpacing() {
             container 
             alignItems={'center'} 
             justifyContent={'center'} 
-            direction={'column'} xs={12} md={9}>
+            direction={'column'} size={{ xs: 12, md: 9 }}>
             {/* post card */}
-          <PostCard/>
-          <PostCard/>
-          <PostCard/>
-          <PostCard/>
+            <PostCardList/>
         </Grid>
       </Grid>
     </Box>
