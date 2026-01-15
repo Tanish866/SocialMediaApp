@@ -1,34 +1,21 @@
-import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import PostCardList from '../PostCardList/PostCardList';
-
-
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: '#fff',
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: 'center',
-  color: (theme.vars ?? theme).palette.text.secondary,
-  ...theme.applyStyles('dark', {
-    backgroundColor: '#1A2027',
-  }),
-}));
+import UserList from '../UserList/UserList';
 
 export default function MainComponent() {
   return (
-    <Box display="flex" justifyContent="center" sx={{ width: '100%', mt: '3rem'} }>
+    <Box display="flex" justifyContent="space-around" sx={{ width: '100%', mt: '3rem'} }>
       <Grid container alignItems={'start'} justifyContent={'center'} rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid size={{ xs: 0, md: 3 }}>
+        <Grid size={{ xs: 0, md: 6 }}>
             {/* Users */}
-          <Item> 1 </Item>
+            <UserList/>
         </Grid>
         <Grid 
             container 
             alignItems={'center'} 
             justifyContent={'center'} 
-            direction={'column'} size={{ xs: 12, md: 9 }}>
+            direction={'column'} size={{ xs: 12, md: 6 }}>
             {/* post card */}
             <PostCardList/>
         </Grid>
