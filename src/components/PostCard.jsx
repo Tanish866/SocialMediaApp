@@ -9,9 +9,9 @@ import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { useState } from 'react';
+import React, { memo, useState } from 'react';
 
-export default function PostCard({authorName, image, content}) {
+function PostCard({authorName, image, content}) {
 
   const [ isLike, setIsLike ] = useState(false);
 
@@ -23,7 +23,7 @@ export default function PostCard({authorName, image, content}) {
             {authorName?.charAt(0) || "?"}
           </Avatar>
         }
-        title="Shrimp and Chorizo Paella"
+        title={authorName}
         subheader="September 14, 2016"
       />
       {(image.length > 0) ? 
@@ -50,3 +50,4 @@ export default function PostCard({authorName, image, content}) {
     </Card>
   );
 }
+export default React.memo(PostCard);

@@ -1,19 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useContext } from "react";
 import PostCard from "../PostCard";
-import axios from "axios";
-
+import postCardContext from '../../providers/PostProvider';
 
 function PostCardList(){
-    const [ posts, setPosts ] = useState([]);
-    useEffect(() => {
-        axios.get("https://dummyapi.io/data/v1/post", {
-            headers: {"app-id" : import.meta.env.VITE_APP_KEY}
-        })
-        .then(response => {
-            const responseObject = response.data;
-            setPosts([...responseObject.data]);
-        })
-    }, []);
+    const { posts } = useContext(postCardContext);
 
 
     return((posts.length == 0) ? 
@@ -27,4 +17,3 @@ function PostCardList(){
     )
 }
 export default PostCardList;
-
