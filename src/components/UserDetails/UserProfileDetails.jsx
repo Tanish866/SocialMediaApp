@@ -3,16 +3,28 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import useUserProfile from '../../hooks/useUserProfile';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import fetchQuery from '../../helper/FetchUser';
 
 
 export default function UserProfileDetails() {
-  const [user, loading] = useUserProfile();
+  // const [user, loading] = useUserProfile();
+  const {userId} = useParams();
+  const response = useQuery({
+      queryKey: ['user', userId],         
+      queryFn: fetchQuery,   
+      enabled: !!userId,                 
+  });
+  console.log("response is ", response);
 
-  if(loading){
+
+  if(response.isLoading){
     return ( <div>Loading...</div>);
   }
   else{
+    const user = response.data.data;
+    // console.log("Data",response);
     return (
       <Card sx={{ display: 'flex', mt: '2rem'}}>
         <Box sx={{ display: 'flex', flexDirection: 'column' }}>
